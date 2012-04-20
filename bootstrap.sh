@@ -25,9 +25,9 @@ sudo -u $user echo alias be="bundle exec" >> /home/$user/.zshrc
 
 
 
-
+# RVM
 curl -L get.rvm.io | bash -s stable
-
+echo -e "install: --no-rdoc --no-ri\nupdate: --no-rdoc --no-ri" > /etc/gemrc
 
 # Rename home directories to lowercase.
 cd /home/$user

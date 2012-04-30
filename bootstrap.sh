@@ -7,7 +7,7 @@ release=lisa
 sudo apt-get update
 sudo apt-get upgrade
 
-sudo apt-get -y install zsh htop zip unzip vim cowsay adobe-flashplugin screen wget curl git build-essential man openjdk-6-jre-headless openjdk-6-jre chromium-browser vlc libssl-dev postgresql postgresql-server-dev-all postgresql-contrib libpq-dev libreadline6-dev
+sudo apt-get -y install zsh htop zip unzip vim cowsay adobe-flashplugin screen wget curl git build-essential man openjdk-6-jre-headless openjdk-6-jre chromium-browser vlc libssl-dev postgresql postgresql-server-dev-all postgresql-contrib libpq-dev libreadline6-dev libxml2 libxml2-dev
 
 cd /tmp
 wget -O sublime_text_2.tar.bz2 http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202%20Build%202181%20x64.tar.bz2

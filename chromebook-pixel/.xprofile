@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xinput set-prop 6 268 -25 -25
+

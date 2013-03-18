@@ -1,4 +1,11 @@
 #!/bin/sh
 
 xinput set-prop 6 268 -25 -25
+synclient TapButton1=1
+synclient TapButton2=2
+synclient TapButton3=3
+
+synclient ClickFinger1=1
+synclient ClickFinger2=2
+synclient ClickFinger3=3
 

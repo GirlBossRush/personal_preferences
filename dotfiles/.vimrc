@@ -14,19 +14,23 @@ let profiles = ['defaults']
 " Path to oh-my-vim binary (take care of it if you are using a virtualenv)
 let g:ohmyvim="/home/eric/.oh-my-vim/env/bin/oh-my-vim"
 
+" End of oh-my-vim required stuff
+
 " load oh-my-vim
+source /home/eric/.vim/ohmyvim/ohmyvim.vim
+
+" Put your custom stuff bellow
 set wildignore+=*/tmp/*,*tmp/**,*.so,*.swp,*.zip,/vendor/bundle/**,server/**,*.sassc,*.scssc,*.cssc " MacOSX/Linux
 
-source /home/eric/.vim/ohmyvim/ohmyvim.vim
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 
-" End of oh-my-vim required stuff
+" Trim whitespace
+autocmd BufWritePre * :%s/\s\+$//e
 
-" Put your custom stuff bellow
 colorscheme molokai
 set enc=utf-8
 set fileencoding=utf-8
@@ -37,8 +41,34 @@ au BufNewFile,BufRead *.hamlc set syntax=haml
 
 set nocompatible
 
-nmap <F1> <Esc>:tabn<CR>
-nmap <F2> <Esc>:tabp<CR>
+
+" Annoyances
+noremap <F1> <nop>
+inoremap <F1> <nop>
+nnoremap Q <nop>
+nnoremap K <nop>
+
+" Remove that banner
+set shortmess+=I
+
+" Backspace past insert
+set backspace=indent,eol,start
+
+" Move into blankspace
+set virtualedit=block
+
+" Yank like Delete
+nnoremap Y y$
+
+set linebreak
+
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
+
+nmap <F1> <Esc>:tabp<CR>
+nmap <F2> <Esc>:tabn<CR>
+inoremap <F1> <Esc>:tabp<CR>
+inoremap <F2> <Esc>:tabn<CR>
 nmap ,q   <Esc>:tabfirst<CR>
 nmap ,r   <Esc>:tablast<CR>
 nmap ,    <tab> <Esc>:tabs<CR>
@@ -50,9 +80,6 @@ nnoremap ; :
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
-nmap <C-e> :e#<CR>
-nmap <C-n> :bnext<CR>
-nmap <C-p> :bprev<CR>
 " Bubble single lines
 nmap <C-Up> ddkP
 nmap <C-Down> ddp

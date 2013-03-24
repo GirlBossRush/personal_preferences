@@ -15,7 +15,14 @@ let profiles = ['defaults']
 let g:ohmyvim="/home/eric/.oh-my-vim/env/bin/oh-my-vim"
 
 " load oh-my-vim
+set wildignore+=*/tmp/*,*tmp/**,*.so,*.swp,*.zip,/vendor/bundle/**,server/**,*.sassc,*.scssc,*.cssc " MacOSX/Linux
+
 source /home/eric/.vim/ohmyvim/ohmyvim.vim
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 
 " End of oh-my-vim required stuff
 
@@ -29,6 +36,29 @@ au BufNewFile,BufRead *.coffee set syntax=coffee
 au BufNewFile,BufRead *.hamlc set syntax=haml
 
 set nocompatible
+
+nmap <F1> <Esc>:tabn<CR>
+nmap <F2> <Esc>:tabp<CR>
+nmap ,q   <Esc>:tabfirst<CR>
+nmap ,r   <Esc>:tablast<CR>
+nmap ,    <tab> <Esc>:tabs<CR>
+
+set pastetoggle=<F3>
+
+cmap w!! w !sudo tee % >/dev/null
+nnoremap ; :
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+nmap <C-e> :e#<CR>
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+" Bubble single lines
+nmap <C-Up> ddkP
+nmap <C-Down> ddp
+" Bubble multiple lines
+vmap <C-Up> xkP`[V`]
+vmap <C-Down> xp`[V`]
 
 set hidden
 set nowrap        " don't wrap lines

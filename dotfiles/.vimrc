@@ -41,12 +41,24 @@ au BufNewFile,BufRead *.hamlc set syntax=haml
 
 set nocompatible
 
-
 " Annoyances
 noremap <F1> <nop>
 inoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap K <nop>
+noremap <silent> <c-l> :nohls<cr><c-l>
+
+" Don't continue comments
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Traditional Save
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-C>:update<CR>
+
+" Traditional Quit
+"noremap <C-w> <C-C>quit<CR>
+
 
 " Remove that banner
 set shortmess+=I
@@ -65,6 +77,7 @@ set linebreak
 set backupdir=~/.vim/backup
 set directory=~/.vim/swap
 
+" Tabs
 nmap <F1> <Esc>:tabp<CR>
 nmap <F2> <Esc>:tabn<CR>
 inoremap <F1> <Esc>:tabp<CR>
@@ -72,6 +85,14 @@ inoremap <F2> <Esc>:tabn<CR>
 nmap ,q   <Esc>:tabfirst<CR>
 nmap ,r   <Esc>:tablast<CR>
 nmap ,    <tab> <Esc>:tabs<CR>
+
+" Movement
+map <C-Up> <Home>
+map <C-Down> <End>
+
+imap <C-Up> <Home>
+imap <C-Down> <End>
+
 
 set pastetoggle=<F3>
 
@@ -81,15 +102,15 @@ nnoremap ; :
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Bubble single lines
-nmap <C-Up> ddkP
-nmap <C-Down> ddp
+nmap <C-S-Up> ddkP
+nmap <C-S-Down> ddp
 " Bubble multiple lines
-vmap <C-Up> xkP`[V`]
-vmap <C-Down> xp`[V`]
+vmap <C-S-Up> xkP`[V`]
+vmap <C-S-Down> xp`[V`]
 
 set hidden
-set nowrap        " don't wrap lines
 set tabstop=2     " a tab is two spaces
+set nowrap        " don't wrap lines
 set expandtab
 set backspace=indent,eol,start "allow backspacing over everything in insert mode
 set autoindent    " always set autoindenting on
@@ -126,5 +147,6 @@ if &term =~ '^screen'
     execute "set <xLeft>=\e[1;*D"
  endif
 
- set wildmode=longest,list,full
- set wildmenu
+
+set wildmode=longest,list,full
+set wildmenu

@@ -57,8 +57,7 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-C>:update<CR>
 
 " Traditional Quit
-"noremap <C-w> <C-C>quit<CR>
-
+noremap <C-W> <C-C>:quit<CR>
 
 " Remove that banner
 set shortmess+=I

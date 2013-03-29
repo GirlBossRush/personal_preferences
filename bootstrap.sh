@@ -1,8 +1,8 @@
 sudo apt-get update
 sudo apt-get upgrade
 
-sudo apt-get -y install zsh htop zip unzip vim cowsay tmux wget curl git build-essential man
-sudo apt-get -y libssl-dev postgresql postgresql-server-dev-all postgresql-contrib libpq-dev libreadline6-dev libxml2 libxml2-dev libxslt1-dev
+sudo apt-get -y install zsh htop zip unzip vim cowsay tmux wget curl git build-essential man lsof cmake tig imagemagick nodejs
+sudo apt-get -y libssl-dev postgresql postgresql-server-dev-all postgresql-contrib libpq-dev libreadline6-dev libxml2 libxml2-dev libxslt1-dev ncurses ruby-dev
 
 cd /home/eric
 chsh -s /usr/bin/zsh eric

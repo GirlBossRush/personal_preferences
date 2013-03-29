@@ -23,6 +23,8 @@ source /home/eric/.vim/ohmyvim/ohmyvim.vim
 set wildignore+=*/tmp/*,*tmp/**,*.so,*.swp,*.zip,/vendor/bundle/**,server/**,*.sassc,*.scssc,*.cssc " MacOSX/Linux
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" Open files in new tabs.
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
@@ -36,8 +38,10 @@ set enc=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf8,prc
 
+" Syntax highlighting
 au BufNewFile,BufRead *.coffee set syntax=coffee
 au BufNewFile,BufRead *.hamlc set syntax=haml
+au BufNewFile,BufRead *.md set syntax=markdown
 
 set nocompatible
 
@@ -101,8 +105,8 @@ nnoremap ; :
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Bubble single lines
-nmap <C-S-Up> ddkP
-nmap <C-S-Down> ddp
+imap <C-S-Up> <Esc>ddkP<CR>ki
+imap <C-S-Down> <Esc>ddp<CR>ki
 " Bubble multiple lines
 vmap <C-S-Up> xkP`[V`]
 vmap <C-S-Down> xp`[V`]
@@ -149,3 +153,42 @@ if &term =~ '^screen'
 
 set wildmode=longest,list,full
 set wildmenu
+
+set cursorline
+
+" Markdown corrections
+augroup mkd
+autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
+augroup END
+
+" Wrap fixes
+noremap <silent> <Leader>w :call ToggleWrap()<CR>
+function ToggleWrap()
+  if &wrap
+    echo "Wrap OFF"
+    setlocal nowrap
+    set virtualedit=all
+    silent! nunmap <buffer> <Up>
+    silent! nunmap <buffer> <Down>
+    silent! nunmap <buffer> <Home>
+    silent! nunmap <buffer> <End>
+    silent! iunmap <buffer> <Up>
+    silent! iunmap <buffer> <Down>
+    silent! iunmap <buffer> <Home>
+    silent! iunmap <buffer> <End>
+  else
+    echo "Wrap ON"
+    setlocal wrap linebreak nolist
+    set virtualedit=
+    setlocal display+=lastline
+    noremap  <buffer> <silent> <Up>   gk
+    noremap  <buffer> <silent> <Down> gj
+    noremap  <buffer> <silent> <Home> g<Home>
+    noremap  <buffer> <silent> <End>  g<End>
+    inoremap <buffer> <silent> <Up>   <C-o>gk
+    inoremap <buffer> <silent> <Down> <C-o>gj
+    inoremap <buffer> <silent> <Home> <C-o>g<Home>
+    inoremap <buffer> <silent> <End>  <C-o>g<End>
+  endif
+endfunction
+

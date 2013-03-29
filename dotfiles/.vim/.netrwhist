@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/eric/.oh-my-vim'
+let g:netrw_dirhist_2='/home/eric/Projects/sinatra.ericwright.me'
+let g:netrw_dirhist_3='/home/eric/Projects/boardwalk'
+let g:netrw_dirhist_4='/etc/X11/xkb'

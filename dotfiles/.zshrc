@@ -7,6 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
+TERM=xterm-256color
 # Example aliases
 alias be='bundle exec'
 alias rr='bundle exec rails s'

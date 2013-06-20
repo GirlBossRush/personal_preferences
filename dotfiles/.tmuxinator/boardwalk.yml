@@ -3,10 +3,10 @@
 
 project_name: Boardwalk
 project_root: ~/Projects/boardwalk
-rvm: 1.9.3@boardwalk
-pre: mongod -f /etc/mongodb.conf &
+#rvm: 1.9.3@boardwalk
+pre: sudo service mongodb start
 tabs:
-  - editor: vim
-  - shell: git pull
-  - server: rails s
-  - console: rails c
+  - Vim: vim
+  - ZSH: git pull
+  - Rails: rails s
+  - Console: rails c

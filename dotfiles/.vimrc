@@ -1,8 +1,7 @@
-
 " Added by oh-my-vim
 
 " Change the default leader
-" let mapleader = ","
+let mapleader = ","
 
 " Skip upgrade of oh-my-vim itself during upgrades
 " let g:ohmyvim_skip_upgrade=1
@@ -35,8 +34,8 @@ set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.sassc,*.scssc,*.cssc
 set wildignore+=*.so,*.swp,*.zip
 
+" CTRL-P
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
 " Open files in new tabs.
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
@@ -55,6 +54,7 @@ set fileencodings=ucs-bom,utf8,prc
 au BufNewFile,BufRead *.coffee set syntax=coffee
 au BufNewFile,BufRead *.hamlc set syntax=haml
 au BufNewFile,BufRead *.md set syntax=markdown
+au BufNewFile,BufRead *.slim set syntax=slim
 
 set nocompatible
 
@@ -66,16 +66,20 @@ nnoremap K <nop>
 noremap <silent> <c-l> :nohls<cr><c-l>
 ino <C-C> <Esc>
 
+nnoremap ; :
+noremap U <C-r>
+
 " Don't continue comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Traditional Save
-noremap <C-S> :update<CR>
+noremap ss :update<CR>
+noremap <C-S> <C-C>:update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-C>:update<CR>
 
 " Traditional Quit
-noremap <C-W> <C-C>:quit<CR>
+noremap qq :quit<CR>
 
 " Remove that banner
 set shortmess+=I
@@ -97,11 +101,15 @@ set directory=~/.vim/swap
 " Tabs
 nmap <F1> <Esc>:tabp<CR>
 nmap <F2> <Esc>:tabn<CR>
+nmap w <Esc>:tabp<CR>
+nmap e <Esc>:tabn<CR>
+
 inoremap <F1> <Esc>:tabp<CR>
 inoremap <F2> <Esc>:tabn<CR>
-nmap ,q   <Esc>:tabfirst<CR>
-nmap ,r   <Esc>:tablast<CR>
-nmap ,    <tab> <Esc>:tabs<CR>
+
+" Comment lines
+map <C-/> :TComment<cr>
+vmap <C-/> :TComment<cr>gv
 
 " Movement
 map <C-Up> <Home>
@@ -114,13 +122,14 @@ imap <C-Down> <End>
 set pastetoggle=<F3>
 
 cmap w!! w !sudo tee % >/dev/null
-nnoremap ; :
-
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " Bubble single lines
+map <C-S-Up> <Esc>ddkP<CR>ki
+map <C-S-Down> <Esc>ddp<CR>ki
 imap <C-S-Up> <Esc>ddkP<CR>ki
 imap <C-S-Down> <Esc>ddp<CR>ki
+
+
 " Bubble multiple lines
 vmap <C-S-Up> xkP`[V`]
 vmap <C-S-Down> xp`[V`]
@@ -162,8 +171,6 @@ if &term =~ '^screen'
     execute "set <xLeft>=\e[1;*D"
  endif
 
-
-
 set cursorline
 
 " Markdown corrections
@@ -178,9 +185,9 @@ set hidden
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
 
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
-set undofile
+" silent !mkdir ~/.vim/backups > /dev/null 2>&1
+" set undodir=~/.vim/backups
+" set undofile
 
 "statusline setup
 set statusline =%#identifier#
@@ -241,7 +248,7 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
 "return '[\s]' if trailing white space is detected
 "return '' otherwise
-function! StatuslineTrailingSpaceWarning()
+  function! StatuslineTrailingSpaceWarning()
     if !exists("b:statusline_trailing_space_warning")
 
         if !&modifiable
@@ -257,17 +264,6 @@ function! StatuslineTrailingSpaceWarning()
     endif
     return b:statusline_trailing_space_warning
 endfunction
-
-
-"return the syntax highlight group under the cursor ''
-"function! StatuslineCurrentHighlight()
-"    let name = synIDattr(synID(line('.'),col('.'),1),'name')
-"    if name == ''
-"        return ''
-"    else
-"        return '[' . name . ']'
-"    endif
-"endfunction
 
 "recalculate the tab warning flag when idle and after writing
 autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning

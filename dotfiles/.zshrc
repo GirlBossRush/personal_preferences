@@ -11,15 +11,18 @@ TERM=xterm-256color
 LC_ALL=en_US.UTF-8
 
 # Saner word deletion
-bindkey -M emacs '^[[3~' kill-word
-bindkey -M emacs '^H' backward-kill-word
-
+# bindkey -M emacs '^[[3~' kill-word
+# bindkey -M emacs '^H' backward-kill-word
+# bindkey -M emacs '^[[3;5~' kill-word
 # Aliases
 alias be='bundle exec'
 alias rr='bundle exec rails s'
 alias resume='tmux attach'
 alias gitg='tig status'
 alias qqqq='exit'
+alias git='noglob git'
+alias thing1='bundle exec unicorn -p 3000'
+alias thing2='bundle exec unicorn -p 3001'
 EDITOR=/usr/bin/vim
 
 # Frozen terminal
@@ -38,7 +41,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 PATH=$PATH:/home/eric/.oh-my-vim/bin
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 # Fix tmux fork issues with RVM.
 cd .
 

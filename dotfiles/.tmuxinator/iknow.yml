@@ -1,0 +1,12 @@
+# ~/.tmuxinator/boardwalk.yml
+# you can make as many tabs as you wish...
+
+project_name: iKnow
+project_root: /data/
+#rvm: 1.9.3
+# pre: sudo service mongodb start
+tabs:
+  - Vim: vim
+  - ZSH: cd ./iknow
+  - iKnow: cd ./iknow && git pull && unicorn -p 3000
+  - "Smart API": cd ./smart_api && git pull && unicorn -p 3001

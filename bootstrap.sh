@@ -28,8 +28,9 @@ git config --global alias.ci commit
 git config --global alias.br branch
 git config --global help.autocorrect 10
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
-
+git config --global core.editor /usr/bin/vim
 git config --global color.ui auto
+git config merge.ff false
 
 # Dropbox
 #cd /tmp
